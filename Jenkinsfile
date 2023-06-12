@@ -1,19 +1,25 @@
 pipeline {
-  stages {
-    stage('Build') {
-      steps {
-        // Perform build steps (e.g., installing dependencies) for your Python application
-        sh 'npm install'
-        sh 'ls'
-      }
-    }
-    
-    stage('Deploy') {
-      steps {
-        // Perform deployment steps for your Python application
-        sh 'npm start'
-      }
-    }
-  }
+    agent any
+    
+    stages {
+     
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+      
+        stage('Deploy') {
+            steps {
+                // You can customize this step based on your deployment strategy
+                sh 'npm start'
+            }
+        }
+    }
 }
-
