@@ -1,6 +1,5 @@
 pipeline {
-  agent any
-  
+    agent {
   stages {
     stage('Build') {
       steps {
@@ -8,14 +7,9 @@ pipeline {
         sh 'npm install'
         sh 'ls'
       }
+      stage('Build') { 
+            steps {
+                sh 'npm install' 
+            }
+        }
     }
-    
-    stage('Deploy') {
-      steps {
-        // Perform deployment steps for your Python application
-        sh 'npm start'
-      }
-    }
-  }
-}
-
