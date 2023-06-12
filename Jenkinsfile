@@ -1,15 +1,21 @@
 pipeline {
-    agent {
+  agent any
+  
   stages {
     stage('Build') {
       steps {
         // Perform build steps (e.g., installing dependencies) for your Python application
-        sh 'npm install'
+        sh 'pip install Flask'
         sh 'ls'
       }
-      stage('Build') { 
-            steps {
-                sh 'npm install' 
-            }
-        }
     }
+    
+    stage('Deploy') {
+      steps {
+        // Perform deployment steps for your Python application
+        sh 'python3 app.py'
+      }
+    }
+  }
+}
+
