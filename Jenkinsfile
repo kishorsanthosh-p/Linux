@@ -5,7 +5,7 @@ pipeline {
     stage('Build') {
       steps {
         // Perform build steps (e.g., installing dependencies) for your Python application
-        sh 'pip install Flask'
+        sh 'npm install'
         sh 'ls'
       }
     }
@@ -13,7 +13,7 @@ pipeline {
     stage('Deploy') {
       steps {
         // Perform deployment steps for your Python application
-        sh 'python3 app.py'
+        sh 'npm start'
       }
     }
   }
