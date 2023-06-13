@@ -1,25 +1,29 @@
 pipeline {
-    agent any
-    
+    agent {
+        docker {
+            image 'node:lts-buster-slim'
+            args '-p 3000:3000'
+        }
+    }
+    environment {
+        CI = 'true'
+    }
     stages {
         stage('Build') {
             steps {
-                echo 'Building React application...'
                 sh 'npm install'
-                sh 'npm run build'
             }
         }
-        
-        stage('Run in Background') {
+        stage('Test') {
             steps {
-                script {
-                    def runInBackground = {
-                        sh 'nohup npm start > /dev/null 2>&1 &'
-                        echo 'React application is running in the background.'
-                    }
-                    
-                    runInBackground()
-                }
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
             }
         }
     }
