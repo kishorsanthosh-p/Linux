@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-       stage('Install Dependencies') {
+       stage("Install Dependencies") {
             steps {
                 sh "docker build . -t react-jenkins:latest"
             }
@@ -22,10 +22,10 @@ pipeline {
 
 //             }
 //         }
-        stage('Run') {
+        stage("Run") {
             steps {
                 // Run the React development server in a Docker container
-                sh 'docker run -p 3000:3000 -itd react-jenkins:latest'
+                sh "docker run -d -p 3000:3000 react-jenkins:latest"
             }
         }
     }
