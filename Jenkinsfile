@@ -2,12 +2,17 @@ pipeline {
     agent any
     
     stages {
-     
-        stage('Install Dependencies') {
+       stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh "docker bulid .-t react-jenkins:latest"
             }
         }
+     
+//         stage('Install Dependencies') {
+//             steps {
+//                 sh 'npm install'
+//             }
+//         }
             
 //         stage('Deploy') {
 //             steps {
@@ -20,7 +25,7 @@ pipeline {
         stage('Run') {
             steps {
                 // Run the React development server in a Docker container
-                sh 'docker run -p 3000:3000 -itd react-web:latest'
+                sh 'docker run -p 3000:3000 -itd react-jenkins:latest'
             }
         }
     }
