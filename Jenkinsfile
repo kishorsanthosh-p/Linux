@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-       stage("Install Dependencies") {
+       stage("build") {
             steps {
                 sh "docker build . -t react-jenkins:latest"
             }
