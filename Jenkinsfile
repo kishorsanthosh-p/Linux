@@ -2,18 +2,25 @@ pipeline {
     agent any
     
     stages {
-     
-        stage('Install Dependencies') {
+        stage('Build') {
             steps {
-                sh 'npm install'
+                echo 'Building...'
             }
         }
-            
+        
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+        
         stage('Deploy') {
             steps {
-                // You can customize this step based on your deployment strategy
-                sh 'npm start'
+                echo 'Deploying...'
             }
         }
     }
 }
+
+// Run the pipeline in the background
+
