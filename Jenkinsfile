@@ -4,7 +4,7 @@ pipeline {
     stages {
        stage('Install Dependencies') {
             steps {
-                sh "docker bulid . -t react-jenkins:latest"
+                sh "docker build . -t react-jenkins:latest"
             }
         }
      
