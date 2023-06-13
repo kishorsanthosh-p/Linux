@@ -12,7 +12,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // You can customize this step based on your deployment strategy
-                bat 'npm start'
+                sh 'npm start'
             }
         }
     }
