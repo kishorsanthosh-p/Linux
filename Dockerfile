@@ -1,4 +1,4 @@
-FROM react-jenkins:latest
+FROM node:latest
 #EXPORT 3000
 WORKDIR /usr/src/app
 COPY package*.json ./
