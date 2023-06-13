@@ -2,25 +2,30 @@ pipeline {
     agent any
     
     stages {
-        stage('Build') {
+     
+        stage('Install Dependencies') {
             steps {
-                echo 'Building...'
+                sh 'npm install'
             }
         }
-        
-        stage('Test') {
+            
+//         stage('Deploy') {
+//             steps {
+//                 // You can customize this step based on your deployment strategy
+//                 sh 'npm start'
+//             }
+//         }
+                stage('Run in Background') {
             steps {
-                echo 'Testing...'
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
+                script {
+                    def runInBackground = {
+                        sh 'nohup npm start > /dev/null 2>&1 &'
+                        echo 'React application is running in the background.'
+                    }
+                    
+                    runInBackground()
+                }
             }
         }
     }
 }
-
-// Run the pipeline in the background
-
