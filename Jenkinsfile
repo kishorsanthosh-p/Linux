@@ -28,15 +28,12 @@ pipeline {
                 sh "docker run -d -p 3000:3000 react-jenkins:latest"
             }
         }
-        stage('Cleanup') {
+stage('Cleanup') {
             steps {
                 script {
                     // Kill the running process
                     try {
-                        def process = sh(script: 'your-command-to-kill-process', returnStatus: true)
-                        if (process != 0) {
-                            error("Failed to kill the process. Exit code: ${process}")
-                        }
+                        sh 'pkill your-process-name'
                     } catch (Exception e) {
                         error("Error while killing the process: ${e.getMessage()}")
                     }
