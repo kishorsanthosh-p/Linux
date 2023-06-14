@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          peter
+          santhosh
         </a>
       </header>
     </div>
