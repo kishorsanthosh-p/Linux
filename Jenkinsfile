@@ -9,16 +9,23 @@ pipeline {
         }
                 stage('Cleanup') {
             steps {
-                script {
-                    // Find the process ID occupying the port
-                                        def port = '3000'  // Replace with the actual port number
-                    try {
-                        sh "fuser -k ${port}/tcp"
-                    } catch (Exception e) {
-                        error("Error while stopping the process on port ${port}: ${e.getMessage()}")
+                
+                 script {
+                    // Find the process ID occupying port 3000
+                    def processId = sh(script: "lsof -t -i :3000", returnStdout: true).trim()
+                    
+                    if (processId) {
+                        // Kill the process
+                        try {
+                            sh "kill ${processId}"
+                        } catch (Exception e) {
+                            error("Error while killing the process on port 3000: ${e.getMessage()}")
+                        }
+                    } else {
+                        echo "No process found on port 3000"
                     }
-
                 }
+                
             }
           }
             
