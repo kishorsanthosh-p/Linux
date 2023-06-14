@@ -26,19 +26,20 @@ pipeline {
             steps {
                 // Run the React development server in a Docker container
                 sh "docker run -d -p 3000:3000 react-jenkins:latest"
+                sh "./kill.sh"
             }
         }
-stage('Cleanup') {
-            steps {
-                script {
-                    // Kill the running process
-                    try {
-                        sh 'pkill your-process-name'
-                    } catch (Exception e) {
-                        error("Error while killing the process: ${e.getMessage()}")
-                    }
-                }
-            }
-        }
+// stage('Cleanup') {
+//             steps {
+//                 script {
+//                     // Kill the running process
+//                     try {
+//                         sh 'pkill your-process-name'
+//                     } catch (Exception e) {
+//                         error("Error while killing the process: ${e.getMessage()}")
+//                     }
+//                 }
+//             }
+//         }
     }
 }
