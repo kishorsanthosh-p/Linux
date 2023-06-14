@@ -6,29 +6,7 @@ pipeline {
             steps {
                 sh "docker build -t react-jenkins:latest . "
             }
-        }
-                stage('Cleanup') {
-            steps {
-                
-                 script {
-                    // Find the process ID occupying port 3000
-                    def processId = sh(script: "lsof -t -i :3000", returnStdout: true).trim()
-                    
-                    if (processId) {
-                        // Kill the process
-                        try {
-                            sh "kill ${processId}"
-                        } catch (Exception e) {
-                            error("Error while killing the process on port 3000: ${e.getMessage()}")
-                        }
-                    } else {
-                        echo "No process found on port 3000"
-                    }
-                }
-                
-            }
-          }
-            
+        }   
 //         stage('Install Dependencies') {
 //             steps {
 //                 sh 'npm install'
@@ -46,7 +24,7 @@ pipeline {
         stage("Run") {
             steps {
                 // Run the React development server in a Docker container
-                
+               sh "kill -9 $(lsof -i:3000 -t)" 
                 sh "docker ps -a"
                 
 //                 script {
