@@ -26,7 +26,7 @@ pipeline {
             steps {
                 // Run the React development server in a Docker container
                 sh "docker run -d -p 3000:3000 react-jenkins:latest"
-                sh "./kill.sh"
+                sh "bash kill.sh"
             }
         }
 // stage('Cleanup') {
