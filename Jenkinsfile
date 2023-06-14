@@ -11,14 +11,13 @@ pipeline {
             steps {
                 script {
                     // Find the process ID occupying the port
-                    def port = '3000'  // Replace with the actual port number
-                    def processId = sh(script: "fuser -n tcp -k ${port}", returnStatus: true)
-                    
-                    if (processId == 0) {
-                        echo "Successfully killed the process on port ${port}"
-                    } else {
-                        error("Failed to kill the process on port ${port}. Exit code: ${processId}")
+                                        def port = '3000'  // Replace with the actual port number
+                    try {
+                        sh "fuser -k ${port}/tcp"
+                    } catch (Exception e) {
+                        error("Error while stopping the process on port ${port}: ${e.getMessage()}")
                     }
+
                 }
             }
           }
