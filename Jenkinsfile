@@ -30,7 +30,7 @@ pipeline {
                 
                 script {
                     def portNumber = 3000
-                    def processId = sh(returnStdout: true, script: "lsof -t -i:${portNumber}").trim()
+                    def processId = sh(returnStdout: true, script: "lsof -t -i:3000").trim()
                     sh "kill ${processId}"
                 }
           sh "docker run -d -p 3000:3000 react-jenkins:latest"
