@@ -25,7 +25,7 @@ pipeline {
             steps {
                 // Run the React development server in a Docker container
                 sh "docker ps -a"
-                fuser -k -n tcp 8080                
+                fuser -k -n tcp 3000               
 //                 script {
 //                     def portNumber = 3000
 //                     def processId = sh(returnStdout: true, script: "lsof -t -i:3000").trim()
