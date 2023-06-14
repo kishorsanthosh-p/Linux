@@ -12,17 +12,12 @@ pipeline {
                 script {
                     // Find the process ID occupying the port
                     def port = '3000'  // Replace with the actual port number
-                    def processId = sh(script: "lsof -t -i:${port} -sTCP:LISTEN", returnStdout: true).trim()
+                    def processId = sh(script: "fuser -n tcp -k ${port}", returnStatus: true)
                     
-                    if (processId) {
-                        // Kill the process
-                        try {
-                            sh "kill ${processId}"
-                        } catch (Exception e) {
-                            error("Error while killing the process: ${e.getMessage()}")
-                        }
+                    if (processId == 0) {
+                        echo "Successfully killed the process on port ${port}"
                     } else {
-                        echo "No process found on port ${port}"
+                        error("Failed to kill the process on port ${port}. Exit code: ${processId}")
                     }
                 }
             }
