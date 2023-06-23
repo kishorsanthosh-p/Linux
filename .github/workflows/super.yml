@@ -31,6 +31,53 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Send message to Google Chat
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.GOOGLE_CHAT_TOKEN }}" \
+            -d '{
+              "cards": [
+                {
+                  "header": {
+                    "title": "Deployment completed",
+                    "imageUrl": "https://example.com/avatar.png"
+                  },
+                  "sections": [
+                    {
+                      "widgets": [
+                        {
+                          "keyValue": {
+                            "topLabel": "Job",
+                            "content": "Demo-deployment"
+                          }
+                        },
+                        {
+                          "keyValue": {
+                            "topLabel": "Environment",
+                            "content": "dev-Admin"
+                          }
+                        },
+                        {
+                          "keyValue": {
+                            "topLabel": "Branch",
+                            "content": "refs/heads/main"
+                          }
+                        },
+                        {
+                          "keyValue": {
+                            "topLabel": "Commited-By",
+                            "content": "kishor-icanio"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }' \
+            https://mail.google.com/chat/u/0/#chat/space/AAAAH-XkFeA
+
 
 #     steps:
 #     - uses: actions/checkout@v3
