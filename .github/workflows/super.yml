@@ -31,17 +31,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Send message to Google Chat
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer ${{ secrets.GOOGLE_CHAT_TOKEN }}" \
-            -d '{
-              "text": "Avatar: GITBOT\nGithub-actions\nDeployment completed\nJob: Demo-deployment\nEnvironment: dev-Admin\nBranch: refs/heads/main\nCommited-By: peter-icanio"
-            }' \
-            "https://chat.googleapis.com/v1/spaces/AAAAH-XkFeA/messages?key=YOUR_API_KEY"
-
-
 #     steps:
 #     - uses: actions/checkout@v3
 #     - name: Use Node.js ${{ matrix.node-version }}
