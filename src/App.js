@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          santhosh
+          kishor santhosh
         </a>
       </header>
     </div>
