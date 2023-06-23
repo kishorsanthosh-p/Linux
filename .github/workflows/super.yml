@@ -37,46 +37,9 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.GOOGLE_CHAT_TOKEN }}" \
             -d '{
-              "cards": [
-                {
-                  "header": {
-                    "title": "Deployment completed",
-                    "imageUrl": "https://example.com/avatar.png"
-                  },
-                  "sections": [
-                    {
-                      "widgets": [
-                        {
-                          "keyValue": {
-                            "topLabel": "Job",
-                            "content": "Demo-deployment"
-                          }
-                        },
-                        {
-                          "keyValue": {
-                            "topLabel": "Environment",
-                            "content": "dev-Admin"
-                          }
-                        },
-                        {
-                          "keyValue": {
-                            "topLabel": "Branch",
-                            "content": "refs/heads/main"
-                          }
-                        },
-                        {
-                          "keyValue": {
-                            "topLabel": "Commited-By",
-                            "content": "kishor-icanio"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+              "text": "Avatar: GITBOT\nGithub-actions\nDeployment completed\nJob: Demo-deployment\nEnvironment: dev-Admin\nBranch: refs/heads/main\nCommited-By: peter-icanio"
             }' \
-            https://mail.google.com/chat/u/0/#chat/space/AAAAH-XkFeA
+            "https://chat.googleapis.com/v1/spaces/AAAAH-XkFeA/messages?key=YOUR_API_KEY"
 
 
 #     steps:
