@@ -37,23 +37,22 @@ jobs:
           --header 'Content-Type: application/json' \
           --data-raw '{
               "cards": [
-                  {
+              {
                       "header": {
                           "title": "Issue Tracker",
                           "subtitle": "Issue No: #${{ github.event.issue.number }}"
-                      },
-                      "sections": [
+                      }
+                },
+                "sections": [
                           {
                               "widgets": [
                                   {
                                      "keyValue": {
-                                     hi kishor
-                                      },
+                                          "topLabel": "Creator",
+                                          "content": "${{ github.event.issue.user.login }}"
+                                      }
                                    }
-                              ]
-                          }
-                      ]
-                  }
+                                 ]
               ]
           }'
 
