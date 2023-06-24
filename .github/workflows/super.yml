@@ -57,6 +57,7 @@ jobs:
                                               "textButton": {
                                                   "text": "OPEN ISSUE",
                                                   "onClick": {
+                                                  echo "hi kishor"
                                                       "openLink": {
                                                           "url": "${{ github.event.issue.html_url }}"
                                                       }
@@ -67,9 +68,6 @@ jobs:
                                   }
                               ]
                           }
-                      ]
-                  }
-              ]
           }'
 
 #     steps:
