@@ -30,8 +30,9 @@ jobs:
 
       - name: Build
         run: npm run build
-        - name: Google Chat Notification
-      run: |
+        
+      - name: Google Chat Notification
+        run: |
           curl --location --request POST '${{ secrets.WEBHOOK }}' \
           --header 'Content-Type: application/json' \
           --data-raw '{
@@ -67,21 +68,7 @@ jobs:
                                           "topLabel": "Assignees",
                                           "content": "- ${{ join(github.event.issue.assignees.*.login) }}"
                                       }
-                                   },
-                                   {
-                                      "buttons": [
-                                          {
-                                              "textButton": {
-                                                  "text": "OPEN ISSUE",
-                                                  "onClick": {
-                                                      "openLink": {
-                                                          "url": "${{ github.event.issue.html_url }}"
-                                                      }
-                                                  }
-                                              }
-                                          }
-                                      ]
-                                  }
+                                   }
                               ]
                           }
                       ]
