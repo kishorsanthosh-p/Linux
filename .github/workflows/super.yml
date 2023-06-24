@@ -36,7 +36,7 @@ jobs:
           curl --location --request POST '${{ secrets.WEBHOOK }}' \
           --header 'Content-Type: application/json' \
           --data-raw '{
-"cards": [
+            "cards": [
                   {
                       "header": {
                           "title": "Issue Tracker",
