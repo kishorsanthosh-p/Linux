@@ -43,12 +43,12 @@ jobs:
           echo "Created branch: ${new_branch}"
           echo "Repository Name: ${{ github.repository }}"
           echo "Pusher Name: ${{ github.actor }}"
-
-            - name: Send Google Chat Notification
-          run: |
+          
+      - name: Google Chat Notification
+        run: |
           curl --location --request POST '${{ secrets.WEBHOOK }}' \
-            --header 'Content-Type: application/json' \
-            --data-raw '{
+          --header 'Content-Type: application/json' \
+          --data-raw '{
               "cards": [
                   {
                       "header": {
@@ -59,11 +59,30 @@ jobs:
                           {
                               "widgets": [
                                   {
-                                      "textParagraph": {
-                                          "text": "Hworld"
+                                     "keyValue": {
+                                          "topLabel": "Creator",
+                                          "content": "${{ github.event.issue.user.login }}"
+                                      },
+                                   },
+                                   {
+                                     "keyValue": {
+                                          "topLabel": "Title",
+                                          "content": "${{ github.event.issue.title }}"
                                       }
-                                  },
-                                  {
+                                   },
+                                   {
+                                     "keyValue": {
+                                          "topLabel": "Assigned Lables",
+                                          "content": "- ${{ join(github.event.issue.labels.*.name) }}"
+                                      }
+                                   },
+                                   {
+                                     "keyValue": {
+                                          "topLabel": "Assignees",
+                                          "content": "- ${{ join(github.event.issue.assignees.*.login) }}"
+                                      }
+                                   },
+                                   {
                                       "buttons": [
                                           {
                                               "textButton": {
