@@ -36,9 +36,8 @@ jobs:
           curl --location --request POST '${{ secrets.WEBHOOK }}' \
           --header 'Content-Type: application/json' \
           --data-raw '{
-            "cards": [
+              "cards": [
                   {
-                  
                       "header": {
                           "title": "Issue Tracker",
                           "subtitle": "Issue No: #${{ github.event.issue.number }}"
@@ -50,6 +49,24 @@ jobs:
                                      "keyValue": {
                                           "topLabel": "Creator",
                                           "content": "${{ github.event.issue.user.login }}"
+                                      },
+                                   },
+                                   {
+                                     "keyValue": {
+                                          "topLabel": "Title",
+                                          "content": "${{ github.event.issue.title }}"
+                                      }
+                                   },
+                                   {
+                                     "keyValue": {
+                                          "topLabel": "Assigned Lables",
+                                          "content": "- ${{ join(github.event.issue.labels.*.name) }}"
+                                      }
+                                   },
+                                   {
+                                     "keyValue": {
+                                          "topLabel": "Assignees",
+                                          "content": "- ${{ join(github.event.issue.assignees.*.login) }}"
                                       }
                                    },
                                    {
@@ -58,7 +75,6 @@ jobs:
                                               "textButton": {
                                                   "text": "OPEN ISSUE",
                                                   "onClick": {
-                                                  echo "hi kishor"
                                                       "openLink": {
                                                           "url": "${{ github.event.issue.html_url }}"
                                                       }
@@ -69,8 +85,10 @@ jobs:
                                   }
                               ]
                           }
+                      ]
+                  }
+              ]
           }'
-
 #     steps:
 #     - uses: actions/checkout@v3
 #     - name: Use Node.js ${{ matrix.node-version }}
