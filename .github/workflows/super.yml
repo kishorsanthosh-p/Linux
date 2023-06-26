@@ -57,30 +57,6 @@ jobs:
                       "sections": [
                           {
                               "widgets": [
-                                  {
-                                     "keyValue": {
-                                          "topLabel": "Creator",
-                                          "content": "${{ github.event.issue.user.login }}"
-                                      },
-                                   },
-                                   {
-                                     "keyValue": {
-                                          "topLabel": "Title",
-                                          "content": "${{ github.event.issue.title }}"
-                                      }
-                                   },
-                                   {
-                                     "keyValue": {
-                                          "topLabel": "Assigned Lables",
-                                          "content": "- ${{ join(github.event.issue.labels.*.name) }}"
-                                      }
-                                   },
-                                   {
-                                     "keyValue": {
-                                          "topLabel": "Assignees",
-                                          "content": "- ${{ join(github.event.issue.assignees.*.login) }}"
-                                      }
-                                   },
                                    {
                                       "buttons": [
                                           {
