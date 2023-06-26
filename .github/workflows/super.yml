@@ -30,12 +30,13 @@ jobs:
 
       - name: Build
         run: npm run build
-        
-      - name: Google Chat Notification
+      
+      - name: Send Google Chat message
+        uses: teknatha136/actions-google-chat-text-message@main
         with:
           google-chat-webhook: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
           text-message: Hello,\nThis is a test message.\nMessage sent by ${{ github.actor }}
-#     steps:
+          #     steps:
 #     - uses: actions/checkout@v3
 #     - name: Use Node.js ${{ matrix.node-version }}
 #       uses: actions/setup-node@v3
