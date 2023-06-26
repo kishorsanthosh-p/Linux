@@ -43,8 +43,10 @@ jobs:
           echo "Issue body: ${{ github.event.issue.body }}"
           echo "Assigned labels: " ${{ join(github.event.issue.labels.*.name) }}
           echo "Assignees: " ${{ join(github.event.issue.assignees.*.login) }}
-          branch_name=$(echo "${{ github.ref }}" | sed -e "s/refs\/heads\///")
-          new_branch="feature/${branch_name}"
+          current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+          # Generate a new branch name
+          new_branch="feature/${current_branch}"
           echo "Created branch: ${new_branch}"
       - name: Google Chat Notification
         run: |
