@@ -44,11 +44,11 @@ jobs:
           echo "Repository Name: ${{ github.repository }}"
           echo "Pusher Name: ${{ github.actor }}"
 
-      - name: Google Chat Notification
+            - name: Send Google Chat Notification
         run: |
           curl --location --request POST '${{ secrets.WEBHOOK }}' \
-          --header 'Content-Type: application/json' \
-          --data-raw '{
+            --header 'Content-Type: application/json' \
+            --data-raw '{
               "cards": [
                   {
                       "header": {
@@ -58,14 +58,12 @@ jobs:
                       "sections": [
                           {
                               "widgets": [
-                                   {
-                                     "keyValue": {
-                                          "topLabel": "Assigned Lables",
-                                          "text": "Hi, World!"
-
+                                  {
+                                      "textParagraph": {
+                                          "text": "Hworld"
                                       }
-                                   },
-                                   {
+                                  },
+                                  {
                                       "buttons": [
                                           {
                                               "textButton": {
@@ -85,7 +83,6 @@ jobs:
                   }
               ]
           }'
-          
           
           #     steps:
 #     - uses: actions/checkout@v3
