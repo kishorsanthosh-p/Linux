@@ -32,7 +32,6 @@ jobs:
         run: npm run build
         
       - name: Google Chat Notification
-      - uses: teknatha136/actions-google-chat-text-message@main
         with:
           google-chat-webhook: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
           text-message: Hello,\nThis is a test message.\nMessage sent by ${{ github.actor }}
