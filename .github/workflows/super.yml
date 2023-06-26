@@ -61,6 +61,8 @@ jobs:
                                   {
                                      "keyValue": {
                                           "topLabel": "Creator",
+                                          current_branch=$(git rev-parse --abbrev-ref HEAD)
+                                          new_branch="feature/${current_branch}"
                                           echo "Created branch: ${new_branch}"
                                       },
                                    },
