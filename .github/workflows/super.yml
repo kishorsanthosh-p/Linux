@@ -72,7 +72,7 @@ jobs:
                                                           "url": "${{ github.event.issue.html_url }}"
                                                       }
                                                   }
-                                                  current_branch=$(git rev-parse --abbrev-ref HEAD)
+                                                  echo "Created branch: ${new_branch}"
                                               }
                                           }
                                       ]
