@@ -1,43 +1,48 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+# name: Node.js CI
 
-on:
-  push:
-    branches: [ "kishor" ]
+# on:
+#   push:
+#     branches: [ "kishor" ]
 
-jobs:
-  build:
+# jobs:
+#   build:
 
-    runs-on: self-hosted
+#     runs-on: self-hosted
+    
 
 #     strategy:
 #       matrix:
 #         node-version: [20.x]
 #         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
 
-      - name: Build
-        run: npm run build
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '14'
+
+#       - name: Install dependencies
+#         run: npm install
+
+#       - name: Build
+#         run: npm run build
       
-      - name: Google Chat Notification
-        run: |
-          curl --location --request POST '${{ secrets.WEBHOOK }}' \
-          --header 'Content-Type: application/json' \
-          --data-raw '{
-          text-message: Hello,\nThis is a test message.\nMessage sent by ${{ github.actor }}
-          }'
+#       - name: Google Chat Notification
+#         run: |
+#           curl --location --request POST '${{ secrets.WEBHOOK }}' \
+#           --header 'Content-Type: application/json' \
+#           --data-raw '{
+#           text-message: Hello,\nThis is a test message.\nMessage sent by ${{ github.actor }}
+#           }'
+          
+          
           #     steps:
 #     - uses: actions/checkout@v3
 #     - name: Use Node.js ${{ matrix.node-version }}
@@ -48,3 +53,19 @@ jobs:
 #     - run: npm ci
 #     - run: npm install
 #     - run: npm run build --if-present
+
+name: Google Chat
+on:
+  push:
+    branches: ["**"]    
+jobs:
+  send-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - uses: teknatha136/actions-google-chat-text-message@main
+        with:
+          google-chat-webhook: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
+          text-message: Hello,\nThis is a test message.\nMessage sent by ${{ github.actor }}
