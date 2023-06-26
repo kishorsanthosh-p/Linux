@@ -62,9 +62,6 @@ jobs:
                                           {
                                               "textButton": {
                                                   "text": "OPEN ISSUE",
-                                                  current_branch=$(git rev-parse --abbrev-ref HEAD)
-                                                  new_branch="feature/${current_branch}"
-                                                  echo "Created branch: ${new_branch}"
                                                   "onClick": {
                                                       "openLink": {
                                                           "url": "${{ github.event.issue.html_url }}"
