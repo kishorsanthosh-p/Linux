@@ -45,7 +45,7 @@ jobs:
           echo "Pusher Name: ${{ github.actor }}"
 
             - name: Send Google Chat Notification
-        run: |
+          run: |
           curl --location --request POST '${{ secrets.WEBHOOK }}' \
             --header 'Content-Type: application/json' \
             --data-raw '{
