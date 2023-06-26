@@ -58,30 +58,11 @@ jobs:
                       "sections": [
                           {
                               "widgets": [
-                                  {
-                                     "keyValue": {
-                                          "topLabel": "Creator",
-                                          current_branch=$(git rev-parse --abbrev-ref HEAD)
-                                          new_branch="feature/${current_branch}"
-                                          echo "Created branch: ${new_branch}"
-                                      },
-                                   },
-                                   {
-                                     "keyValue": {
-                                          "topLabel": "Title",
-                                         echo "Repository Name: ${{ github.repository }}"
-                                      }
-                                   },
                                    {
                                      "keyValue": {
                                           "topLabel": "Assigned Lables",
-                                          echo "Pusher Name: ${{ github.actor }}"
-                                      }
-                                   },
-                                   {
-                                     "keyValue": {
-                                          "topLabel": "Assignees",
-                                          "content": "- ${{ join(github.event.issue.assignees.*.login) }}"
+                                          "text": "Hi, World!"
+
                                       }
                                    },
                                    {
